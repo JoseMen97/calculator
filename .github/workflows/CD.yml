@@ -13,8 +13,15 @@ jobs:
       - name: checkout
         uses: actions/checkout@v4.1.1
 
-      - name: build
-        run: |
-          docker login -u josemen97 -p ${{ secrets.TOKEN_DOCKER }}
-          docker build . -t  josemen97/calculator
-          docker push josemen97/calculator
+      - name: docker login
+        uses: actions/login-action@v3.0.0
+        with: 
+          usermame: josemen97
+          password: ${{ secrets.TOKEN_DOCKER }}
+          
+      - name: build y push de imagen
+        uses: docker/build-push-action@4a13e500e55cf31b7a5d59a38ab2040ab0f42f56
+        with:
+          context: .
+          push: true
+          tags: josemen97/calculator:${{ github.sha }}
