@@ -15,5 +15,6 @@ jobs:
 
       - name: build
         run: |
+          docker login -u josemen97 -p ${{ secrets.TOKEN_DOCKER }}
           docker build . -t  josemen97/calculator
           docker push josemen97/calculator
