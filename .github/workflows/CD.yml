@@ -1,0 +1,20 @@
+name: CD_Nginx
+run-name: CD_Nginx
+
+on:
+  pull_request:
+    types: [opened]
+
+permissions: write-all
+
+jobs:
+  CD:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@4.1.1
+
+      - name: build
+        run: |
+          docker build . -t  josemen97/calculator
+          docker push
