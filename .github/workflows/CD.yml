@@ -2,8 +2,7 @@ name: CD_Nginx
 run-name: CD_Nginx
 
 on:
-  pull_request:
-    types: [opened]
+  pull_request
 
 permissions: write-all
 
@@ -17,4 +16,4 @@ jobs:
       - name: build
         run: |
           docker build . -t  josemen97/calculator
-          docker push
+          docker push josemen97/calculator
