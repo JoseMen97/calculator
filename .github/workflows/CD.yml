@@ -27,11 +27,4 @@ jobs:
           tags: josemen97/calculator:${{ github.sha }}
 
       - name: Ejecutar contenedor Docker
-        uses: docker/cli@v2
-        with:
-          command: run
-          args: |
-            -d  # Ejecutar en segundo plano
-            --name mi-contenedor  # Nombre del contenedor
-            -p 8080:80  # Mapeo de puertos (puerto del contenedor:puerto local)
-            josemen97/calculator:${{ github.sha }}  # Nombre de la imagen
+        run: docker run -d --name calculator -p 8080:80 josemen97/calculator:${{ github.sha }}
