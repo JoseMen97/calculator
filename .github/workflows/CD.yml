@@ -12,6 +12,7 @@ jobs:
     steps:
       - name: ip
         run: ifconfig
+        
       # - name: checkout
       #   uses: actions/checkout@v4.1.1
 
