@@ -28,3 +28,6 @@ jobs:
 
       - name: Ejecutar contenedor Docker
         run: docker run -d --name calculator -p 8080:80 josemen97/calculator:${{ github.sha }}
+
+      - name: Curl prueba de funcionamiento
+        run: curl http://localhost:8080
