@@ -20,7 +20,7 @@ jobs:
       - name: docker login
         uses: docker/login-action@v3.0.0
         with:
-          username: JoseMen97
+          username: josemen97
           password: ${{ secrets.TOKEN_DOCKER }}
 
       - name: build y push de imagen
