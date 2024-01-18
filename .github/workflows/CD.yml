@@ -1,5 +1,0 @@
-name: CI_CD_Nginx
-run-name: CI & CD Nginx
-
-on:
-  pull_request
