@@ -1,0 +1,37 @@
+name: CI_CD_Nginx
+
+run-name: CI_CD_Nginx
+
+on: 
+  pull_request:
+    types:
+      - opened
+
+permissions: write-all
+
+jobs:
+  CI_CD:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4.1.1
+
+      - name: docker login
+        uses: docker/login-action@v3.0.0
+        with:
+          username: JoseMen97
+          password: ${{ secrets.TOKEN_DOCKER }}
+
+      - name: build y push de imagen
+        uses: docker/build-push-action@4a13e500e55cf31b7a5d59a38ab2040ab0f42f56
+        with:
+          context: .
+          push: true
+          tags: josemen97/calculator:${{ github.sha }}
+
+      - name: Ejecutar contenedor docker
+        run: docker run -d --name calculator -p 8080:80 josemen97/calculator:${{ github.sha }}
+
+      - name: Curl prueba de funcionamiento
+        run: curl http://localhost:8080
